@@ -1,80 +1,190 @@
 {
-  "name": "Isha Sunnah (After Farz)",
-  "rakats": {
-    "sunnah": 2,
-    "witr": 3
-  },
-  "description": "ইশার ফরজের পর ২ রাকাত সুন্নত (সুন্নতে মুয়াক্কাদা) – রাসূল ﷺ-এর নিয়মিত আমল। চুপচাপ পড়তে হয়। প্রথম রাকাতে কাফিরুন, দ্বিতীয়তে ইখলাস সুন্নত।",
-  "steps": [
-    {
-      "id": "niyyah",
-      "title": "Niyyah",
-      "image": "/images/niyyah.png",
-      "audio": "/audio/niyyah.mp3",
-      "bangla": "আমি ২ রাকাত ইশার সুন্নত নামাজ আল্লাহর জন্য আদায় করছি।"
+    "name": "Isha Sunnah (After Farz)",
+    "rakats": {
+        "sunnah": 2,
+        "witr": 3
     },
-    {"id": "takbir", "title": "Takbir", "image": "/images/takbir.png", "audio": "/audio/takbir.mp3", "bangla": "আল্লাহু আকবার"},
-    {
-      "id": "qiyam_first_rakat",
-      "title": "Qiyam - 1st Rakat",
-      "image": "/images/qiyam.png",
-      "audio": ["/audio/sana.mp3", "/audio/taawwudh.mp3", "/audio/bismillah.mp3", "/audio/fatiha.mp3", "/audio/kafirun.mp3"],
-      "sub_steps": [
-        {"sub_id": "sana", "title": "Sana", "bangla": "সুবহানাকা..."},
-        {"sub_id": "taawwudh", "title": "Ta'awwudh", "bangla": "আউযু..."},
-        {"sub_id": "bismillah", "title": "Bismillah", "bangla": "বিসমিল্লাহ..."},
-        {"sub_id": "fatiha", "title": "Fatiha", "bangla": "আলহামদু... আমীন।"},
-        {"sub_id": "surah_first", "title": "Surah Al-Kafirun", "bangla": "কুল ইয়া আইয়ুহাল কাফিরূন..."}
-      ]
-    },
-    {"id": "ruku_first", "title": "Ruku", "image": "/images/ruku.png", "audio": "/audio/ruku.mp3", "bangla": "সুবহানা রাব্বিয়াল আযীম"},
-    {"id": "qawmah_first", "title": "Qawmah", "image": "/images/qawmah.png", "audio": "/audio/qawmah.mp3", "bangla": "সামি'আল্লাহু..."},
-    {"id": "sujood_first_one", "title": "First Sujood", "image": "/images/sujood.png", "audio": "/audio/sujood.mp3", "bangla": "সুবহানা রাব্বিয়াল আ'লা"},
-    {"id": "jalsa_first", "title": "Jalsa", "image": "/images/jalsa.png", "audio": "/audio/jalsa.mp3", "bangla": "রাব্বিগফিরলী"},
-    {"id": "sujood_first_two", "title": "Second Sujood", "image": "/images/sujood.png", "audio": "/audio/sujood.mp3", "bangla": "সুবহানা রাব্বিয়াল আ'লা", "note": "দাঁড়ান"},
-    {
-      "id": "qiyam_second_rakat",
-      "title": "Qiyam - 2nd Rakat",
-      "image": "/images/qiyam.png",
-      "audio": ["/audio/bismillah.mp3", "/audio/fatiha.mp3", "/audio/ikhlas.mp3"],
-      "sub_steps": [
-        {"sub_id": "bismillah", "title": "Bismillah", "bangla": "বিসমিল্লাহ..."},
-        {"sub_id": "fatiha", "title": "Fatiha", "bangla": "আলহামদু... আমীন।"},
-        {"sub_id": "surah_second", "title": "Surah Al-Ikhlas", "bangla": "কুল হুয়াল্লাহু আহাদ..."}
-      ]
-    },
-    {"id": "ruku_second", "title": "Ruku", "image": "/images/ruku.png", "audio": "/audio/ruku.mp3", "bangla": "সুবহানা রাব্বিয়াল আযীম"},
-    {"id": "qawmah_second", "title": "Qawmah", "image": "/images/qawmah.png", "audio": "/audio/qawmah.mp3", "bangla": "সামি'আল্লাহু..."},
-    {"id": "sujood_second_one", "title": "First Sujood", "image": "/images/sujood.png", "audio": "/audio/sujood.mp3", "bangla": "সুবহানা রাব্বিয়াল আ'লা"},
-    {"id": "jalsa_second", "title": "Jalsa", "image": "/images/jalsa.png", "audio": "/audio/jalsa.mp3", "bangla": "রাব্বিগফিরলী"},
-    {"id": "sujood_second_two", "title": "Second Sujood", "image": "/images/sujood.png", "audio": "/audio/sujood.mp3", "bangla": "সুবহানা রাব্বিয়াল আ'লা", "note": "বসুন"},
-    {
-      "id": "tashahhud",
-      "title": "Tashahhud",
-      "image": "/images/tashahhud.png",
-      "audio": "/audio/tashahhud.mp3",
-      "bangla": "আত্তাহিয়্যাতু লিল্লাহি... রাসূলুহ।"
-    },
-    {
-      "id": "darood",
-      "title": "Darood Sharif",
-      "image": "/images/tashahhud.png",
-      "audio": "/audio/darood.mp3",
-      "bangla": "আল্লাহুম্মা সাল্লি আলা মুহাম্মাদ... হামীদুম মাজীদ।"
-    },
-    {
-      "id": "dua_masura",
-      "title": "Dua Masura",
-      "image": "/images/tashahhud.png",
-      "audio": "/audio/dua_masura.mp3",
-      "bangla": "আল্লাহুম্মা ইন্নী যালামতু... গাফূরুর রাহীম।"
-    },
-    {
-      "id": "salam",
-      "title": "Salam",
-      "image": "/images/salam.png",
-      "audio": "/audio/salam.mp3",
-      "bangla": "আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ"
-    }
-  ]
+    "description": "ইশার ফরজের পর ২ রাকাত সুন্নত (সুন্নতে মুয়াক্কাদা) – রাসূল ﷺ-এর নিয়মিত আমল। চুপচাপ পড়তে হয়। প্রথম রাকাতে কাফিরুন, দ্বিতীয়তে ইখলাস সুন্নত।",
+    "steps": [
+        {
+            "id": "niyyah",
+            "title": "Niyyah",
+            "image": "/images/niyyah.webp",
+            "audio": "/audio/niyyah.mp3",
+            "bangla": "আমি ২ রাকাত ইশার সুন্নত নামাজ আল্লাহর জন্য আদায় করছি।"
+        },
+        {
+            "id": "takbir",
+            "title": "Takbir",
+            "image": "/images/takbir.webp",
+            "audio": "/audio/takbir.mp3",
+            "bangla": "আল্লাহু আকবার"
+        },
+        {
+            "id": "qiyam_first_rakat",
+            "title": "Qiyam - 1st Rakat",
+            "image": "/images/qiyam.webp",
+            "audio": [
+                "/audio/sana.mp3",
+                "/audio/taawwudh.mp3",
+                "/audio/bismillah.mp3",
+                "/audio/fatiha.mp3",
+                "/audio/kafirun.mp3"
+            ],
+            "sub_steps": [
+                {
+                    "sub_id": "sana",
+                    "title": "Sana",
+                    "bangla": "সুবহানাকা..."
+                },
+                {
+                    "sub_id": "taawwudh",
+                    "title": "Ta'awwudh",
+                    "bangla": "আউযু..."
+                },
+                {
+                    "sub_id": "bismillah",
+                    "title": "Bismillah",
+                    "bangla": "বিসমিল্লাহ..."
+                },
+                {
+                    "sub_id": "fatiha",
+                    "title": "Fatiha",
+                    "bangla": "আলহামদু... আমীন।"
+                },
+                {
+                    "sub_id": "surah_first",
+                    "title": "Surah Al-Kafirun",
+                    "bangla": "কুল ইয়া আইয়ুহাল কাফিরূন..."
+                }
+            ]
+        },
+        {
+            "id": "ruku_first",
+            "title": "Ruku",
+            "image": "/images/ruku.webp",
+            "audio": "/audio/ruku.mp3",
+            "bangla": "সুবহানা রাব্বিয়াল আযীম"
+        },
+        {
+            "id": "qawmah_first",
+            "title": "Qawmah",
+            "image": "/images/qawmah.webp",
+            "audio": "/audio/qawmah.mp3",
+            "bangla": "সামি'আল্লাহু..."
+        },
+        {
+            "id": "sujood_first_one",
+            "title": "First Sujood",
+            "image": "/images/sujood.webp",
+            "audio": "/audio/sujood.mp3",
+            "bangla": "সুবহানা রাব্বিয়াল আ'লা"
+        },
+        {
+            "id": "jalsa_first",
+            "title": "Jalsa",
+            "image": "/images/jalsa.webp",
+            "audio": "/audio/jalsa.mp3",
+            "bangla": "রাব্বিগফিরলী"
+        },
+        {
+            "id": "sujood_first_two",
+            "title": "Second Sujood",
+            "image": "/images/sujood.webp",
+            "audio": "/audio/sujood.mp3",
+            "bangla": "সুবহানা রাব্বিয়াল আ'লা",
+            "note": "দাঁড়ান"
+        },
+        {
+            "id": "qiyam_second_rakat",
+            "title": "Qiyam - 2nd Rakat",
+            "image": "/images/qiyam.webp",
+            "audio": [
+                "/audio/bismillah.mp3",
+                "/audio/fatiha.mp3",
+                "/audio/ikhlas.mp3"
+            ],
+            "sub_steps": [
+                {
+                    "sub_id": "bismillah",
+                    "title": "Bismillah",
+                    "bangla": "বিসমিল্লাহ..."
+                },
+                {
+                    "sub_id": "fatiha",
+                    "title": "Fatiha",
+                    "bangla": "আলহামদু... আমীন।"
+                },
+                {
+                    "sub_id": "surah_second",
+                    "title": "Surah Al-Ikhlas",
+                    "bangla": "কুল হুয়াল্লাহু আহাদ..."
+                }
+            ]
+        },
+        {
+            "id": "ruku_second",
+            "title": "Ruku",
+            "image": "/images/ruku.webp",
+            "audio": "/audio/ruku.mp3",
+            "bangla": "সুবহানা রাব্বিয়াল আযীম"
+        },
+        {
+            "id": "qawmah_second",
+            "title": "Qawmah",
+            "image": "/images/qawmah.webp",
+            "audio": "/audio/qawmah.mp3",
+            "bangla": "সামি'আল্লাহু..."
+        },
+        {
+            "id": "sujood_second_one",
+            "title": "First Sujood",
+            "image": "/images/sujood.webp",
+            "audio": "/audio/sujood.mp3",
+            "bangla": "সুবহানা রাব্বিয়াল আ'লা"
+        },
+        {
+            "id": "jalsa_second",
+            "title": "Jalsa",
+            "image": "/images/jalsa.webp",
+            "audio": "/audio/jalsa.mp3",
+            "bangla": "রাব্বিগফিরলী"
+        },
+        {
+            "id": "sujood_second_two",
+            "title": "Second Sujood",
+            "image": "/images/sujood.webp",
+            "audio": "/audio/sujood.mp3",
+            "bangla": "সুবহানা রাব্বিয়াল আ'লা",
+            "note": "বসুন"
+        },
+        {
+            "id": "tashahhud",
+            "title": "Tashahhud",
+            "image": "/images/tashahhud.webp",
+            "audio": "/audio/tashahhud.mp3",
+            "bangla": "আত্তাহিয়্যাতু লিল্লাহি... রাসূলুহ।"
+        },
+        {
+            "id": "darood",
+            "title": "Darood Sharif",
+            "image": "/images/tashahhud.webp",
+            "audio": "/audio/darood.mp3",
+            "bangla": "আল্লাহুম্মা সাল্লি আলা মুহাম্মাদ... হামীদুম মাজীদ।"
+        },
+        {
+            "id": "dua_masura",
+            "title": "Dua Masura",
+            "image": "/images/tashahhud.webp",
+            "audio": "/audio/dua_masura.mp3",
+            "bangla": "আল্লাহুম্মা ইন্নী যালামতু... গাফূরুর রাহীম।"
+        },
+        {
+            "id": "salam",
+            "title": "Salam",
+            "image": "/images/salam.webp",
+            "audio": "/audio/salam.mp3",
+            "bangla": "আসসালামু আলাইকুম ওয়া রাহমাতুল্লাহ"
+        }
+    ]
 }
