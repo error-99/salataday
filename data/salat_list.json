@@ -1,0 +1,54 @@
+[
+  {
+    "id": "fajr",
+    "name": "Fajr (ফজর)",
+    "rakats": "4 Rakats Total",
+    "prayers": [
+      { "title": "2 Rakat Sunnah", "link": "/salat.html?id=fajarsunnot" },
+      { "title": "2 Rakat Farz", "link": "/salat.html?id=fajarfaraj" }
+    ]
+  },
+  {
+    "id": "dhuhr",
+    "name": "Dhuhr (যোহর)",
+    "rakats": "12 Rakats Total",
+    "prayers": [
+      { "title": "4 Rakat Sunnah", "link": "/salat.html?id=dhuhur4sunnah" },
+      { "title": "4 Rakat Farz", "link": "/salat.html?id=dhuhur4faraj" },
+      { "title": "2 Rakat Sunnah", "link": "/salat.html?id=johor_2_rakat_sunnah" },
+      { "title": "2 Rakat Nafl", "link": "/salat.html?id=johor_2_rakat_nafal" }
+    ]
+  },
+  {
+    "id": "asr",
+    "name": "Asr (আসর)",
+    "rakats": "4 Rakats Total",
+    "prayers": [
+      { "title": "4 Rakat Sunnah (Ghair Muakkadah)", "link": "/salat.html?id=asr_4_rakat_sunnah" },
+      { "title": "4 Rakat Farz", "link": "/salat.html?id=asr_4_rakat_fard" }
+    ]
+  },
+  {
+    "id": "maghrib",
+    "name": "Maghrib (মাগরিব)",
+    "rakats": "7 Rakats Total",
+    "prayers": [
+      { "title": "3 Rakat Farz", "link": "/salat.html?id=maghrib_3_rakat_fard" },
+      { "title": "2 Rakat Sunnah", "link": "/salat.html?id=maghrib_2_rakat_sunnah" },
+      { "title": "2 Rakat Nafl", "link": "/salat.html?id=maghrib_2_rakat_nafal" }
+    ]
+  },
+  {
+    "id": "isha",
+    "name": "Isha (এশা)",
+    "rakats": "17 Rakats Total",
+    "prayers": [
+      { "title": "4 Rakat Sunnah", "link": "/salat.html?id=isha_4_rakat_sunnah" },
+      { "title": "4 Rakat Farz", "link": "/salat.html?id=isha_4_rakat_fard" },
+      { "title": "2 Rakat Sunnah", "link": "/salat.html?id=isha_2_rakat_sunnah" },
+      { "title": "2 Rakat Nafl (Before Witr)", "link": "/salat.html?id=isha_2_rakat_nafal" },
+      { "title": "3 Rakat Witr", "link": "/salat.html?id=isha_3_rakat_witr" },
+      { "title": "2 Rakat Nafl (After Witr)", "link": "/salat.html?id=isha_2_rakat_nafal" }
+    ]
+  }
+]

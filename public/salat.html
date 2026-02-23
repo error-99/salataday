@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Salat Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #059669; --primary-dark: #065f46; --bg: #f1f5f9;
+            --text: #0f172a; --accent: #d97706; 
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body { margin: 0; font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg); color: var(--text); padding-bottom: 70px; }
+
+        header {
+            background: var(--primary); color: white; padding: 12px 10px;
+            text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky; top: 0; z-index: 10;
+        }
+
+        .back-btn {
+            position: absolute; left: 10px; top: 12px; color: white; text-decoration: none;
+            font-weight: 600; font-size: 0.85rem; background: rgba(255,255,255,0.2);
+            padding: 4px 10px; border-radius: 12px;
+        }
+
+        header h1 { margin: 0 0 2px 0; font-size: 1.2rem; font-weight: 700; }
+        header p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
+
+        .progress-container { width: 100%; height: 4px; background: rgba(255,255,255,0.3); margin-top: 10px; border-radius: 10px; overflow: hidden; }
+        .progress-bar { height: 100%; background: white; width: 0%; transition: width 0.3s ease; }
+
+        main { padding: 12px; max-width: 500px; margin: 0 auto; width: 100%; }
+
+        .description-box {
+            background: #e0f2fe; border: 1px solid #bae6fd; color: #0369a1;
+            padding: 12px; border-radius: 12px; margin-bottom: 12px;
+            font-size: 0.9rem; line-height: 1.5;
+        }
+
+        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+
+        .card-header { background: #ecfdf5; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #d1fae5; }
+        .card-header span { color: var(--primary-dark); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
+        .card-header h2 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); }
+
+        .image-placeholder { background: #f8fafc; height: 300px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #e2e8f0; padding: 10px; }
+        .image-placeholder img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 8px; }
+
+        .content { padding: 15px; }
+
+        .sub-step-block { margin-bottom: 20px; text-align: center; border-bottom: 1px dashed #e2e8f0; padding-bottom: 15px; }
+        .sub-step-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        
+        .sub-step-badge { background-color: #d1fae5; color: #065f46; padding: 4px 16px; border-radius: 12px; display: inline-block; font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; }
+
+        .arabic { font-family: 'Amiri', serif; font-size: 1.8rem; line-height: 1.8; margin-bottom: 10px; color: #020617; text-align: center; }
+        .transliteration { font-size: 0.95rem; color: #475569; font-style: italic; margin-bottom: 15px; line-height: 1.5; text-align: center; }
+        
+        .bangla-box { background: #f8fafc; border-left: 4px solid var(--primary); padding: 10px; margin-top: 10px; text-align: left; font-size: 1rem; color: #0f172a; line-height: 1.5; font-weight: 700; border-radius: 0 8px 8px 0; }
+        .note-box { background: #fffbeb; border-left: 4px solid var(--accent); padding: 10px; margin-top: 15px; text-align: left; font-size: 0.9rem; color: #92400e; border-radius: 0 8px 8px 0; font-weight: 600; }
+
+        .audio-btn { background: #ecfdf5; border: 1px solid var(--primary); color: var(--primary-dark); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
+        .audio-btn:active { transform: scale(0.95); }
+
+        nav { padding: 10px; background: white; display: flex; gap: 10px; border-top: 1px solid #e2e8f0; position: fixed; bottom: 0; width: 100%; max-width: 500px; box-sizing: border-box; left: 50%; transform: translateX(-50%); box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 20; }
+        nav button { flex: 1; padding: 12px; border-radius: 12px; border: none; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
+        #next-btn { background: var(--primary); color: white; }
+        #prev-btn { background: #e2e8f0; color: #475569; }
+        #prev-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        
+        #message-box { text-align: center; padding: 40px 15px; font-size: 1rem; color: var(--primary-dark); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="back-btn">← Back</a>
+        <h1 id="prayer-name">Loading...</h1>
+        <p id="rakat-info"></p>
+        <div class="progress-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+    </header>
+
+    <div id="message-box">Loading prayer data...</div>
+
+    <main id="main-container" style="display: none;">
+        <div id="prayer-description" class="description-box" style="display: none;"></div>
+
+        <div class="card">
+            <div class="card-header">
+                <span id="step-number">Step 1</span>
+                <h2 id="step-title">Title</h2>
+            </div>
+            
+            <div class="image-placeholder">
+                <img id="step-image" src="" alt="Prayer Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display:none; color: #94a3b8; font-weight: 600; font-size: 0.85rem;">Image Placeholder</span>
+            </div>
+
+            <div class="content" id="dynamic-content"></div>
+            
+            <div class="content" style="padding-top: 0;">
+                <div class="note-box" id="global-note" style="display: none;"></div>
+            </div>
+        </div>
+    </main>
+
+    <nav>
+        <button id="prev-btn" disabled>Previous</button>
+        <button id="next-btn">Next Step</button>
+    </nav>
+
+    <audio id="prayer-audio"></audio>
+
+    <script>
+        let prayerData = null;
+        let currentStep = 0;
+        const prayerAudio = document.getElementById('prayer-audio');
+        let currentPlayingBtn = null;
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const prayerId = urlParams.get('id');
+
+        if (!prayerId) {
+            document.getElementById('message-box').innerHTML = `❌ No prayer selected.<br><br><a href="index.html" style="color: var(--primary);">Go back to Homepage</a>`;
+        } else {
+            // NOTE: Make sure your server.js is serving the '/data' folder if you get 404 errors!
+            fetch(`/data/${prayerId}.json`)
+                .then(res => {
+                    if (!res.ok) throw new Error('File not found');
+                    return res.json();
+                })
+                .then(data => {
+                    prayerData = data;
+                    document.getElementById('message-box').style.display = 'none';
+                    document.getElementById('main-container').style.display = 'block';
+                    initApp();
+                })
+                .catch(err => {
+                    document.getElementById('message-box').innerHTML = `❌ Error loading data.<br>Make sure <strong>/data/${prayerId}.json</strong> exists and is accessible.`;
+                });
+        }
+
+        function initApp() {
+            document.getElementById('prayer-name').innerText = prayerData.name;
+            document.getElementById('rakat-info').innerText = `Sunnah: ${prayerData.rakats.sunnah || 0} | Farz: ${prayerData.rakats.farz || 0}`;
+            document.getElementById('prayer-description').innerHTML = `<strong style="font-size: 0.95rem; color: #0284c7; display:block; margin-bottom: 3px;">About this prayer:</strong> ${prayerData.description}`;
+            updateStep();
+        }
+
+        function updateStep() {
+            const step = prayerData.steps[currentStep];
+            
+            document.getElementById('prayer-description').style.display = (currentStep === 0) ? 'block' : 'none';
+            
+            prayerAudio.pause();
+            if(currentPlayingBtn) currentPlayingBtn.innerHTML = "🔊 Play Audio";
+            currentPlayingBtn = null;
+            
+            document.getElementById('step-title').innerText = step.title;
+            document.getElementById('step-number').innerText = `Step ${currentStep + 1} of ${prayerData.steps.length}`;
+            
+            const stepImage = document.getElementById('step-image');
+            stepImage.style.display = 'block';
+            stepImage.nextElementSibling.style.display = 'none';
+            stepImage.src = step.image; 
+            
+            let htmlString = "";
+            if (step.sub_steps && step.sub_steps.length > 0) {
+                step.sub_steps.forEach((sub, index) => {
+                    let audioSrc = (Array.isArray(step.audio) && step.audio[index]) ? step.audio[index] : "";
+                    htmlString += `
+                        <div class="sub-step-block">
+                            <div><span class="sub-step-badge">${sub.title}</span></div>
+                            ${sub.arabic ? `<div class="arabic" dir="rtl">${sub.arabic}</div>` : ''}
+                            ${audioSrc ? `<button class="audio-btn" onclick="toggleSpecificAudio('${audioSrc}', this)">🔊 Play Audio</button>` : ''}
+                            ${sub.bangla ? `<div class="bangla-box">${sub.bangla}</div>` : ''}
+                        </div>`;
+                });
+            } else {
+                htmlString += `
+                    <div style="text-align: center;">
+                        ${step.arabic ? `<div class="arabic" dir="rtl">${step.arabic}</div>` : ''}
+                        ${step.arabic_transliteration ? `<div class="transliteration">${step.arabic_transliteration}</div>` : ''}
+                        ${step.audio && !Array.isArray(step.audio) ? `<button class="audio-btn" onclick="toggleSpecificAudio('${step.audio}', this)">🔊 Play Audio</button>` : ''}
+                    </div>
+                    ${step.bangla ? `<div class="bangla-box">${step.bangla}</div>` : ''}`;
+            }
+            document.getElementById('dynamic-content').innerHTML = htmlString;
+
+            const noteContainer = document.getElementById('global-note');
+            if (step.note) {
+                noteContainer.innerHTML = `<strong>Note:</strong> ${step.note}`;
+                noteContainer.style.display = "block";
+            } else {
+                noteContainer.style.display = "none";
+            }
+
+            const progress = ((currentStep + 1) / prayerData.steps.length) * 100;
+            document.getElementById('progress-bar').style.width = `${progress}%`;
+            document.getElementById('prev-btn').disabled = currentStep === 0;
+            document.getElementById('next-btn').innerText = currentStep === prayerData.steps.length - 1 ? "Finish" : "Next Step";
+        }
+
+        window.toggleSpecificAudio = function(src, btnElement) {
+            if (prayerAudio.src.endsWith(src) && !prayerAudio.paused) {
+                prayerAudio.pause();
+                btnElement.innerHTML = "▶️ Resume Audio";
+            } else {
+                if (currentPlayingBtn && currentPlayingBtn !== btnElement) currentPlayingBtn.innerHTML = "🔊 Play Audio";
+                if (!prayerAudio.src.endsWith(src)) prayerAudio.src = src;
+                
+                prayerAudio.play().catch(e => alert("Audio file not found: " + src));
+                btnElement.innerHTML = "⏸ Pause Audio";
+                currentPlayingBtn = btnElement;
+            }
+        };
+
+        prayerAudio.addEventListener('ended', () => {
+            if (currentPlayingBtn) {
+                currentPlayingBtn.innerHTML = "🔊 Play Audio";
+                currentPlayingBtn = null;
+            }
+        });
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (currentStep < prayerData.steps.length - 1) {
+                currentStep++; updateStep(); window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                alert("Prayer Guide Completed!"); window.location.href = "index.html";
+            }
+        });
+
+        document.getElementById('prev-btn').addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--; updateStep(); window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

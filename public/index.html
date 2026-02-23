@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Salat Guide Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #f1f5f9; --card-bg: #ffffff; --text-main: #0f172a;
+            --text-muted: #64748b; --primary: #059669; --header-bg: #059669;
+            --header-text: #ffffff; --dropdown-bg: #f8fafc; --border-color: #e2e8f0;
+            --nav-bg: #ffffff;
+        }
+
+        .dark-mode {
+            --bg-color: #0f172a; --card-bg: #1e293b; --text-main: #f8fafc;
+            --text-muted: #94a3b8; --primary: #10b981; --header-bg: #064e3b;
+            --header-text: #ffffff; --dropdown-bg: #0f172a; --border-color: #334155;
+            --nav-bg: #1e293b;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            margin: 0; font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg-color); color: var(--text-main);
+            transition: background-color 0.3s, color 0.3s; padding-bottom: 70px;
+        }
+
+        header {
+            background-color: var(--header-bg); color: var(--header-text);
+            padding: 12px 10px; text-align: center;
+            border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        header h1 { margin: 0; font-size: 1.3rem; font-weight: 700; }
+
+        /* INCREASED MAX WIDTH & CSS GRID FOR RESPONSIVENESS */
+        main { padding: 12px; max-width: 1000px; margin: 0 auto; width: 100%; }
+
+        #salat-list-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 12px;
+            align-items: start;
+        }
+
+        .salat-card {
+            background-color: var(--card-bg); border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05); border: 1px solid var(--border-color);
+            overflow: hidden; transition: background-color 0.3s;
+        }
+
+        .salat-header {
+            padding: 10px 12px; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+        }
+
+        .salat-header h2 { margin: 0; font-size: 1.05rem; color: var(--text-main); }
+        .salat-header p { margin: 2px 0 0 0; font-size: 0.75rem; color: var(--text-muted); }
+
+        .arrow { font-size: 0.9rem; transition: transform 0.3s; color: var(--primary); }
+        .salat-card.active .arrow { transform: rotate(180deg); }
+
+        .dropdown-content {
+            display: none; background-color: var(--dropdown-bg);
+            border-top: 1px solid var(--border-color); padding: 5px 12px;
+        }
+        .salat-card.active .dropdown-content { display: block; }
+
+        .prayer-item {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 8px 0; border-bottom: 1px solid var(--border-color);
+            text-decoration: none; color: var(--text-main); font-weight: 600; font-size: 0.9rem;
+        }
+        .prayer-item:last-child { border-bottom: none; }
+        .prayer-item:hover { color: var(--primary); }
+
+        .go-btn {
+            background-color: var(--primary); color: white; padding: 4px 10px;
+            border-radius: 15px; font-size: 0.7rem; font-weight: bold;
+        }
+
+        nav {
+            position: fixed; bottom: 0; width: 100%; background-color: var(--nav-bg);
+            display: flex; justify-content: space-around; padding: 6px 0;
+            border-top: 1px solid var(--border-color); box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+            z-index: 100;
+        }
+        .nav-item { text-align: center; color: var(--text-muted); cursor: pointer; font-weight: 600; font-size: 0.75rem; width: 50%; }
+        .nav-item.active { color: var(--primary); }
+        .nav-icon { font-size: 1.1rem; margin-bottom: 2px; }
+
+        #settings-view { display: none; text-align: center; padding: 20px 15px; max-width: 400px; margin: 0 auto; }
+        .theme-switch-wrapper {
+            display: flex; align-items: center; justify-content: space-between; background: var(--card-bg);
+            padding: 12px; border-radius: 10px; border: 1px solid var(--border-color); margin-top: 10px;
+        }
+        .theme-switch-wrapper span { font-size: 0.95rem; font-weight: bold; }
+        
+        .switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
+        .slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary); }
+        input:checked + .slider:before { transform: translateX(20px); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1 id="app-title">Salat Guide</h1>
+    </header>
+
+    <main>
+        <div id="home-view">
+            <div id="salat-list-container">
+                <p style="text-align: center; font-size: 0.85rem; grid-column: 1 / -1;">Loading Salats...</p>
+            </div>
+        </div>
+
+        <div id="settings-view">
+            <h2 style="margin-top: 0; font-size: 1.1rem;">Settings</h2>
+            <div class="theme-switch-wrapper">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="theme-toggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+    </main>
+
+    <nav>
+        <div class="nav-item active" id="nav-home" onclick="switchView('home')">
+            <div class="nav-icon">🏠</div> Home
+        </div>
+        <div class="nav-item" id="nav-settings" onclick="switchView('settings')">
+            <div class="nav-icon">⚙️</div> Settings
+        </div>
+    </nav>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        if (localStorage.getItem('theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        function switchView(view) {
+            document.getElementById('home-view').style.display = view === 'home' ? 'block' : 'none';
+            document.getElementById('settings-view').style.display = view === 'settings' ? 'block' : 'none';
+            document.getElementById('nav-home').classList.toggle('active', view === 'home');
+            document.getElementById('nav-settings').classList.toggle('active', view === 'settings');
+            document.getElementById('app-title').innerText = view === 'home' ? 'Salat Guide' : 'Settings';
+        }
+
+        fetch('/api/salats')
+            .then(res => res.json())
+            .then(data => {
+                const container = document.getElementById('salat-list-container');
+                container.innerHTML = ''; 
+                data.forEach(salat => {
+                    const card = document.createElement('div');
+                    card.className = 'salat-card';
+                    let prayersHtml = '';
+                    salat.prayers.forEach(prayer => {
+                        prayersHtml += `<a href="${prayer.link}" class="prayer-item"><span>${prayer.title}</span><span class="go-btn">Read</span></a>`;
+                    });
+                    card.innerHTML = `
+                        <div class="salat-header" onclick="this.parentElement.classList.toggle('active')">
+                            <div><h2>${salat.name}</h2><p>${salat.rakats}</p></div>
+                            <div class="arrow">▼</div>
+                        </div>
+                        <div class="dropdown-content">${prayersHtml}</div>
+                    `;
+                    container.appendChild(card);
+                });
+            })
+            .catch(err => {
+                document.getElementById('salat-list-container').innerHTML = '<p style="color: red; text-align:center; font-size: 0.85rem; grid-column: 1 / -1;">Failed to load data.</p>';
+            });
+    </script>
+</body>
+</html>
