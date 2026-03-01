@@ -2,92 +2,576 @@
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Salat Guide</title>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Hind+Siliguri:wght@400;600;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>Salat Guide · refined & polished</title>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ----- design system: calm & polished ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
-            --primary: #059669; --primary-dark: #065f46; --bg: #f1f5f9;
-            --text: #0f172a; --accent: #d97706; 
+            /* Light Mode Variables */
+            --primary: #0b7b5a;        
+            --primary-light: #d1f0e5;
+            --primary-soft: #e6f7f0;
+            --bg: #f5f9fe;              
+            --surface: #ffffff;
+            --text-main: #173e3c;        
+            --text-muted: #4c6b68;
+            --accent-warm: #c25f1a;       
+            --accent-soft: #fee9d7;
+            --border-light: #dde9e5;
+            --shadow-elevation: 0 8px 24px -8px rgba(8, 60, 50, 0.12), 0 2px 4px rgba(0,0,0,0.02);
+            --radius-large: 28px;
+            --radius-medium: 20px;
+            --radius-small: 40px;
+            --transition: all 0.2s ease;
         }
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        /* ----- Dark Mode Variables ----- */
+        body.dark-mode {
+            --primary: #12b886;       
+            --primary-light: #0d2e24;
+            --primary-soft: #0b211a;
+            --bg: #090e11;            
+            --surface: #121c22;
+            --text-main: #e2e8f0;
+            --text-muted: #94a3b8;
+            --accent-warm: #f59e0b;
+            --accent-soft: #261c10;
+            --border-light: #22333b;
+            --shadow-elevation: 0 8px 24px -8px rgba(0, 0, 0, 0.6), 0 2px 4px rgba(0,0,0,0.4);
+        }
 
-        body { margin: 0; font-family: 'Hind Siliguri', sans-serif; background-color: var(--bg); color: var(--text); padding-bottom: 70px; }
+        html {
+            font-size: clamp(0.9rem, 2.4vw, 1.05rem);
+        }
 
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0 0.75rem 6rem 0.75rem;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .app-wrapper {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* ----- header: refined, airy, balanced ----- */
         header {
-            background: var(--primary); color: white; padding: 12px 10px;
-            text-align: center; box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky; top: 0; z-index: 10;
+            background: linear-gradient(145deg, #0f7760, #0b5f4c);
+            color: white;
+            padding: 0.9rem 1.2rem 1rem 1.2rem;
+            border-radius: 0 0 32px 32px;
+            box-shadow: 0 6px 14px rgba(8, 70, 50, 0.2);
+            position: sticky;
+            top: 6px;
+            z-index: 20;
+            width: 100%;
+            max-width: 500px;
+            margin-top: 0;
+            backdrop-filter: blur(6px);
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            transition: background 0.3s;
         }
 
-        .back-btn {
-            position: absolute; left: 10px; top: 12px; color: white; text-decoration: none;
-            font-weight: 600; font-size: 0.85rem; background: rgba(255,255,255,0.2);
-            padding: 4px 10px; border-radius: 12px;
+        body.dark-mode header {
+            background: linear-gradient(145deg, #094739, #063127);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        header h1 { margin: 0 0 2px 0; font-size: 1.2rem; font-weight: 700; }
-        header p { margin: 0; font-size: 0.8rem; opacity: 0.9; }
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Adjusted for theme button */
+            gap: 0.5rem;
+        }
 
-        .progress-container { width: 100%; height: 4px; background: rgba(255,255,255,0.3); margin-top: 10px; border-radius: 10px; overflow: hidden; }
-        .progress-bar { height: 100%; background: white; width: 0%; transition: width 0.3s ease; }
+        .back-btn, .theme-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.3rem 1.1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+            transition: var(--transition);
+            letter-spacing: 0.02em;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+        .theme-btn {
+            padding: 0.3rem 0.6rem; /* Make it more square/circular */
+            font-size: 0.9rem;
+        }
+        .back-btn:hover, .theme-btn:hover { background: rgba(255, 255, 255, 0.3); }
 
-        main { padding: 12px; max-width: 500px; margin: 0 auto; width: 100%; }
+        .title-group {
+            flex: 1;
+            text-align: center;
+        }
+        .title-group h1 {
+            font-size: 1.25rem;
+            font-weight: 650;
+            margin-bottom: 0.1rem;
+            line-height: 1.2;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .title-group p {
+            font-size: 0.68rem;
+            font-weight: 500;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.2);
+            display: inline-block;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            letter-spacing: 0.02em;
+            backdrop-filter: blur(2px);
+        }
 
+        /*  progress: softer, thicker */
+        .progress-container {
+            width: 100%;
+            height: 5px;
+            background: rgba(255,255,255,0.2);
+            margin-top: 0.7rem;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            background: #ffe1a3;        
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.2, 0.9, 0.3, 1);
+            border-radius: 10px;
+            box-shadow: 0 0 6px #ffcd7e;
+        }
+
+        /* ----- main container ----- */
+        main {
+            padding: 1.2rem 0 0.4rem 0;
+            width: 100%;
+        }
+
+        /* description card */
         .description-box {
-            background: #e0f2fe; border: 1px solid #bae6fd; color: #0369a1;
-            padding: 12px; border-radius: 12px; margin-bottom: 12px;
-            font-size: 0.9rem; line-height: 1.5;
+            background: #e4f3fd;
+            border: 1px solid #c1e2f5;
+            color: #105d73;
+            padding: 1rem 1.4rem;
+            border-radius: var(--radius-medium);
+            margin-bottom: 1.2rem;
+            font-size: 0.92rem;
+            line-height: 1.6;
+            box-shadow: 0 2px 8px rgba(2, 100, 120, 0.08);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+        body.dark-mode .description-box {
+            background: #0c1c26;
+            border-color: #162f40;
+            color: #a5d3ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         }
 
-        .card { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 15px -5px rgba(0,0,0,0.1); border: 1px solid #e2e8f0; }
+        /* step card */
+        .card {
+            background: var(--surface);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            box-shadow: var(--shadow-elevation);
+            border: 1px solid rgba(185, 215, 200, 0.5);
+            transition: var(--transition);
+            width: 100%;
+            backdrop-filter: blur(2px);
+        }
+        body.dark-mode .card {
+            border-color: var(--border-light);
+        }
 
-        .card-header { background: #ecfdf5; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #d1fae5; }
-        .card-header span { color: var(--primary-dark); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; }
-        .card-header h2 { margin: 0; font-size: 1.1rem; font-weight: 700; color: var(--primary-dark); }
+        .card-header {
+            background: var(--primary-soft);
+            padding: 0.9rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #c9eadc;
+            flex-wrap: wrap;
+            gap: 0.2rem 1rem;
+            transition: var(--transition);
+        }
+        body.dark-mode .card-header {
+            border-bottom-color: var(--border-light);
+        }
+        .card-header span {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+            background: rgba(255,255,255,0.8);
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            border: 1px solid #b8e0d2;
+        }
+        body.dark-mode .card-header span {
+            background: #132422;
+            border-color: #1e3a34;
+        }
+        .card-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 680;
+            color: #0b5e4b;
+            word-break: break-word;
+        }
+        body.dark-mode .card-header h2 {
+            color: #a7f3d0;
+        }
 
-        .image-placeholder { background: #f8fafc; height: 300px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid #e2e8f0; padding: 10px; }
-        .image-placeholder img { max-height: 100%; max-width: 100%; object-fit: contain; border-radius: 8px; }
+        /* image area */
+        .image-placeholder {
+            background: #fafefc;
+            min-height: 200px;
+            max-height: 260px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid var(--border-light);
+            padding: 0.5rem;
+            transition: var(--transition);
+        }
+        body.dark-mode .image-placeholder {
+            background: #0c1418;
+        }
+        .image-placeholder img {
+            max-height: 240px;
+            width: auto;
+            max-width: 100%;
+            object-fit: contain;
+            border-radius: 20px;
+            transition: opacity 0.2s;
+        }
 
-        .content { padding: 15px; }
+        /* content spacing */
+        .content {
+            padding: 1.6rem 1.4rem;
+        }
 
-        .sub-step-block { margin-bottom: 20px; text-align: center; border-bottom: 1px dashed #e2e8f0; padding-bottom: 15px; }
-        .sub-step-block:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        /* sub step blocks */
+        .sub-step-block {
+            margin-bottom: 2.2rem;
+            text-align: center;
+            border-bottom: 1px dashed #c0dbd2;
+            padding-bottom: 2rem;
+            transition: var(--transition);
+        }
+        body.dark-mode .sub-step-block { border-bottom-color: #1f3630; }
+        .sub-step-block:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0.2rem;
+        }
+
+        .sub-step-badge {
+            background: var(--primary-light);
+            color: #0b5f4c;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            display: inline-block;
+            font-weight: 650;
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid #9fdac6;
+            box-shadow: 0 2px 4px rgba(0,80,70,0.05);
+            transition: var(--transition);
+        }
+        body.dark-mode .sub-step-badge {
+            background: #0f2e24;
+            color: #6ee7b7;
+            border-color: #184a3b;
+        }
+
+        /* arabic : graceful */
+        .arabic {
+            font-family: 'Amiri', serif;
+            font-size: clamp(1.8rem, 7.5vw, 2.4rem);
+            line-height: 1.5;
+            margin: 0.5rem 0 0.6rem 0;
+            color: #152c2a;
+            font-weight: 550;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.02);
+            transition: color 0.3s;
+        }
+        body.dark-mode .arabic { color: #f8fafc; }
+
+        .transliteration {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-style: italic;
+            margin-bottom: 0.9rem;
+            letter-spacing: 0.01em;
+        }
+
+        .bangla-box {
+            background: #f3faf7;
+            border-left: 6px solid var(--primary);
+            padding: 1rem 1.3rem;
+            margin-top: 0.8rem;
+            text-align: left;
+            font-size: 1rem;
+            border-radius: 0 18px 18px 0;
+            font-weight: 600;
+            color: #1b4c44;
+            box-shadow: inset 0 0 0 1px rgba(9, 120, 90, 0.1);
+            transition: var(--transition);
+        }
+        body.dark-mode .bangla-box {
+            background: #0f1e1a;
+            color: #d1fae5;
+            box-shadow: inset 0 0 0 1px rgba(18, 184, 134, 0.15);
+        }
+
+        .note-box {
+            background: var(--accent-soft);
+            border-left: 6px solid var(--accent-warm);
+            padding: 1rem 1.3rem;
+            margin-top: 0.8rem;
+            font-size: 0.93rem;
+            color: #6b3f10;
+            border-radius: 0 18px 18px 0;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        body.dark-mode .note-box {
+            color: #fcd34d;
+            border-left-color: #d97706;
+        }
+
+        /* audio button */
+        .audio-btn {
+            background: var(--surface);
+            border: 1.5px solid var(--primary);
+            color: var(--primary);
+            padding: 0.7rem 2rem;
+            border-radius: 60px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 0.4rem 0 0.3rem 0;
+            box-shadow: 0 6px 12px rgba(10, 100, 80, 0.1);
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            line-height: 1;
+        }
+        .audio-btn:hover {
+            background: var(--primary-soft);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 18px -6px rgba(8, 100, 70, 0.2);
+        }
+        .audio-btn:active {
+            transform: scale(0.96);
+        }
+        body.dark-mode .audio-btn {
+            background: #121c22;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+        body.dark-mode .audio-btn:hover { background: #182e26; }
+
+        /* bottom navigation */
+        nav {
+            padding: 0.7rem 1.2rem;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            display: flex;
+            gap: 0.8rem;
+            border: 1px solid rgba(190, 215, 200, 0.8);
+            position: fixed;
+            bottom: 12px;
+            width: calc(100% - 1.5rem);
+            max-width: 460px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 12px 28px -8px rgba(20, 60, 50, 0.25);
+            z-index: 30;
+            border-radius: 60px;
+            transition: var(--transition);
+        }
+        body.dark-mode nav {
+            background: rgba(18, 28, 34, 0.85);
+            border-color: rgba(34, 51, 59, 0.8);
+            box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.6);
+        }
+
+        nav button {
+            flex: 1;
+            padding: 0.8rem 0.2rem;
+            border-radius: 50px;
+            border: none;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            -webkit-tap-highlight-color: transparent;
+            white-space: nowrap;
+            letter-spacing: 0.02em;
+        }
+        #next-btn {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 8px 16px -6px rgba(8, 100, 70, 0.5);
+        }
+        #next-btn:hover { background: #0c6e57; transform: scale(1.02); }
+        #next-btn:active { transform: scale(0.98); }
         
-        .sub-step-badge { background-color: #d1fae5; color: #065f46; padding: 4px 16px; border-radius: 12px; display: inline-block; font-weight: 700; font-size: 0.85rem; margin-bottom: 10px; }
-
-        .arabic { font-family: 'Amiri', serif; font-size: 1.8rem; line-height: 1.8; margin-bottom: 10px; color: #020617; text-align: center; }
-        .transliteration { font-size: 0.95rem; color: #475569; font-style: italic; margin-bottom: 15px; line-height: 1.5; text-align: center; }
+        #prev-btn {
+            background: #f0f5f3;
+            color: #1d4e44;
+            border: 1px solid #b7d5cb;
+        }
+        #prev-btn:hover { background: #e3efea; }
+        #prev-btn:active { transform: scale(0.98); }
+        #prev-btn:disabled { opacity: 0.3; pointer-events: none; border-color: transparent; }
         
-        .bangla-box { background: #f8fafc; border-left: 4px solid var(--primary); padding: 10px; margin-top: 10px; text-align: left; font-size: 1rem; color: #0f172a; line-height: 1.5; font-weight: 700; border-radius: 0 8px 8px 0; }
-        .note-box { background: #fffbeb; border-left: 4px solid var(--accent); padding: 10px; margin-top: 15px; text-align: left; font-size: 0.9rem; color: #92400e; border-radius: 0 8px 8px 0; font-weight: 600; }
+        body.dark-mode #prev-btn {
+            background: #1c2b33;
+            color: #cbd5e1;
+            border-color: #2b404d;
+        }
+        body.dark-mode #prev-btn:hover { background: #233640; }
 
-        .audio-btn { background: #ecfdf5; border: 1px solid var(--primary); color: var(--primary-dark); padding: 8px 16px; border-radius: 20px; cursor: pointer; font-weight: 700; font-size: 0.85rem; display: inline-flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px; }
-        .audio-btn:active { transform: scale(0.95); }
+        /* message box */
+        #message-box {
+            text-align: center;
+            padding: 3rem 1.5rem;
+            font-size: 1.1rem;
+            color: var(--text-main);
+            background: var(--surface);
+            border-radius: 42px;
+            margin-top: 2rem;
+            box-shadow: var(--shadow-elevation);
+            border: 1px solid var(--border-light);
+            transition: var(--transition);
+        }
 
-        nav { padding: 10px; background: white; display: flex; gap: 10px; border-top: 1px solid #e2e8f0; position: fixed; bottom: 0; width: 100%; max-width: 500px; box-sizing: border-box; left: 50%; transform: translateX(-50%); box-shadow: 0 -5px 15px rgba(0,0,0,0.05); z-index: 20; }
-        nav button { flex: 1; padding: 12px; border-radius: 12px; border: none; font-weight: 700; font-size: 0.95rem; cursor: pointer; }
-        #next-btn { background: var(--primary); color: white; }
-        #prev-btn { background: #e2e8f0; color: #475569; }
-        #prev-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        /* ----- Completion Modal Styles ----- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; display: flex; }
         
-        #message-box { text-align: center; padding: 40px 15px; font-size: 1rem; color: var(--primary-dark); font-weight: 600; }
+        .modal-content {
+            background: var(--surface);
+            padding: 2.2rem 1.5rem;
+            border-radius: var(--radius-large);
+            text-align: center;
+            width: 90%;
+            max-width: 360px;
+            box-shadow: var(--shadow-elevation);
+            border: 1px solid var(--border-light);
+            transform: scale(0.9);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        
+        .modal-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+        .modal-content h3 {
+            color: var(--primary);
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+        .modal-content p {
+            color: var(--text-muted);
+            margin-bottom: 1.8rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .modal-actions { display: flex; flex-direction: column; gap: 0.8rem; }
+        .modal-actions button {
+            padding: 0.9rem;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .modal-btn-primary { background: var(--primary); color: white; box-shadow: 0 4px 12px rgba(10, 100, 80, 0.2); }
+        .modal-btn-primary:hover { background: #0c6e57; transform: translateY(-2px); }
+        .modal-btn-secondary { background: var(--primary-soft); color: var(--primary); border: 1px solid var(--border-light); }
+        .modal-btn-secondary:hover { background: var(--primary-light); }
+        
+        body.dark-mode .modal-btn-secondary { background: #132422; border-color: #223e3a; }
+        body.dark-mode .modal-btn-secondary:hover { background: #1a332f; }
+
+
+        /* tiny screens fine-tune */
+        @media (max-width: 380px) {
+            header { padding: 0.7rem 0.8rem; }
+            .title-group h1 { font-size: 1.1rem; }
+            .title-group p { font-size: 0.6rem; }
+            .card-header { flex-direction: column; align-items: start; }
+            .arabic { font-size: 1.6rem; }
+            nav { padding: 0.5rem 0.8rem; }
+        }
     </style>
 </head>
 <body>
-
+<div class="app-wrapper">
+    <!-- header: elevated calmness -->
     <header>
-        <a href="index.html" class="back-btn">← Back</a>
-        <h1 id="prayer-name">Loading...</h1>
-        <p id="rakat-info"></p>
+        <div class="header-top">
+            <a href="index.html" class="back-btn">← Back</a>
+            <div class="title-group">
+                <h1 id="prayer-name">Loading...</h1>
+                <p id="rakat-info"></p>
+            </div>
+            <!-- Dark Mode Toggle Button -->
+            <button id="theme-toggle" class="theme-btn">🌙</button>
+        </div>
         <div class="progress-container">
             <div class="progress-bar" id="progress-bar"></div>
         </div>
     </header>
 
+    <!-- loading / error message -->
     <div id="message-box">Loading prayer data...</div>
 
+    <!-- main content (hidden until data loaded) -->
     <main id="main-container" style="display: none;">
         <div id="prayer-description" class="description-box" style="display: none;"></div>
 
@@ -96,28 +580,64 @@
                 <span id="step-number">Step 1</span>
                 <h2 id="step-title">Title</h2>
             </div>
-            
             <div class="image-placeholder">
-                <img id="step-image" src="" alt="Prayer Image" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <span style="display:none; color: #94a3b8; font-weight: 600; font-size: 0.85rem;">Image Placeholder</span>
+                <img id="step-image" src="" alt="Prayer visual" loading="lazy" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <span style="display:none; color: #8fa8a0; font-weight: 500;">🖼️ illustration</span>
             </div>
-
             <div class="content" id="dynamic-content"></div>
-            
             <div class="content" style="padding-top: 0;">
                 <div class="note-box" id="global-note" style="display: none;"></div>
             </div>
         </div>
     </main>
 
+    <!-- floating bottom navigation -->
     <nav>
         <button id="prev-btn" disabled>Previous</button>
         <button id="next-btn">Next Step</button>
     </nav>
+</div>
 
-    <audio id="prayer-audio"></audio>
+<!-- Completion Popup Modal -->
+<div id="completion-modal" class="modal-overlay">
+    <div class="modal-content">
+        <div class="modal-icon">✨</div>
+        <h3>Alhamdulillah</h3>
+        <p>You have successfully completed this guide. May Allah accept your prayer.</p>
+        <div class="modal-actions">
+            <button id="read-again-btn" class="modal-btn-secondary">↻ Read Again</button>
+            <button id="go-home-btn" class="modal-btn-primary">🏠 Go Home</button>
+        </div>
+    </div>
+</div>
 
-    <script>
+<audio id="prayer-audio" preload="metadata"></audio>
+
+<script>
+    (function() {
+        // --- Theme Toggle Logic ---
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+
+        // Load saved theme preference
+        if(localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-mode');
+            themeToggleBtn.innerText = '☀️';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if(body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                themeToggleBtn.innerText = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                themeToggleBtn.innerText = '🌙';
+            }
+        });
+
+
+        // --- App Logic ---
         let prayerData = null;
         let currentStep = 0;
         const prayerAudio = document.getElementById('prayer-audio');
@@ -125,122 +645,172 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const prayerId = urlParams.get('id');
+        const msgBox = document.getElementById('message-box');
+        const mainContainer = document.getElementById('main-container');
+        const modal = document.getElementById('completion-modal');
 
         if (!prayerId) {
-            document.getElementById('message-box').innerHTML = `❌ No prayer selected.<br><br><a href="index.html" style="color: var(--primary);">Go back to Homepage</a>`;
+            msgBox.innerHTML = `❌ No prayer selected.<br><br><a href="index.html" style="color: var(--primary); font-weight: 700;">← return home</a>`;
         } else {
-            // NOTE: Make sure your server.js is serving the '/data' folder if you get 404 errors!
             fetch(`/data/${prayerId}.json`)
                 .then(res => {
-                    if (!res.ok) throw new Error('File not found');
+                    if (!res.ok) throw new Error(`HTTP ${res.status}`);
                     return res.json();
                 })
                 .then(data => {
                     prayerData = data;
-                    document.getElementById('message-box').style.display = 'none';
-                    document.getElementById('main-container').style.display = 'block';
+                    msgBox.style.display = 'none';
+                    mainContainer.style.display = 'block';
                     initApp();
                 })
                 .catch(err => {
-                    document.getElementById('message-box').innerHTML = `❌ Error loading data.<br>Make sure <strong>/data/${prayerId}.json</strong> exists and is accessible.`;
+                    msgBox.innerHTML = `❌ Could not load prayer.<br>Ensure <strong>/data/${prayerId}.json</strong> exists.<br><span style="font-size:0.85rem;">${err.message}</span>`;
                 });
         }
 
         function initApp() {
-            document.getElementById('prayer-name').innerText = prayerData.name;
-            document.getElementById('rakat-info').innerText = `Sunnah: ${prayerData.rakats.sunnah || 0} | Farz: ${prayerData.rakats.farz || 0}`;
-            document.getElementById('prayer-description').innerHTML = `<strong style="font-size: 0.95rem; color: #0284c7; display:block; margin-bottom: 3px;">About this prayer:</strong> ${prayerData.description}`;
+            document.getElementById('prayer-name').innerText = prayerData.name || 'সালাত';
+            const sunnah = prayerData.rakats?.sunnah ?? 0;
+            const farz = prayerData.rakats?.farz ?? 0;
+            document.getElementById('rakat-info').innerText = `Sunnah: ${sunnah} | Farz: ${farz}`;
+            document.getElementById('prayer-description').innerHTML = `<strong>📘 about this prayer</strong> · ${prayerData.description || ''}`;
             updateStep();
         }
 
         function updateStep() {
+            if (!prayerData?.steps?.length) return;
             const step = prayerData.steps[currentStep];
-            
-            document.getElementById('prayer-description').style.display = (currentStep === 0) ? 'block' : 'none';
-            
+
+            // toggle description visibility
+            document.getElementById('prayer-description').style.display = currentStep === 0 ? 'block' : 'none';
+
+            // pause any playing audio
             prayerAudio.pause();
-            if(currentPlayingBtn) currentPlayingBtn.innerHTML = "🔊 Play Audio";
-            currentPlayingBtn = null;
-            
-            document.getElementById('step-title').innerText = step.title;
-            document.getElementById('step-number').innerText = `Step ${currentStep + 1} of ${prayerData.steps.length}`;
-            
+            if (currentPlayingBtn) {
+                currentPlayingBtn.innerHTML = "🔊 Play Audio";
+                currentPlayingBtn = null;
+            }
+
+            document.getElementById('step-title').innerText = step.title || '';
+            document.getElementById('step-number').innerText = `Step ${currentStep + 1} / ${prayerData.steps.length}`;
+
+            // image handling
             const stepImage = document.getElementById('step-image');
+            const placeholderSpan = stepImage.nextElementSibling;
             stepImage.style.display = 'block';
-            stepImage.nextElementSibling.style.display = 'none';
-            stepImage.src = step.image; 
-            
+            if (placeholderSpan) placeholderSpan.style.display = 'none';
+            stepImage.src = step.image?.trim() || '';
+            stepImage.onerror = function() {
+                stepImage.style.display = 'none';
+                if (placeholderSpan) placeholderSpan.style.display = 'block';
+            };
+
+            // build dynamic content
             let htmlString = "";
             if (step.sub_steps && step.sub_steps.length > 0) {
-                step.sub_steps.forEach((sub, index) => {
-                    let audioSrc = (Array.isArray(step.audio) && step.audio[index]) ? step.audio[index] : "";
-                    htmlString += `
-                        <div class="sub-step-block">
-                            <div><span class="sub-step-badge">${sub.title}</span></div>
-                            ${sub.arabic ? `<div class="arabic" dir="rtl">${sub.arabic}</div>` : ''}
-                            ${audioSrc ? `<button class="audio-btn" onclick="toggleSpecificAudio('${audioSrc}', this)">🔊 Play Audio</button>` : ''}
-                            ${sub.bangla ? `<div class="bangla-box">${sub.bangla}</div>` : ''}
-                        </div>`;
+                step.sub_steps.forEach((sub, idx) => {
+                    let audioSrc = (Array.isArray(step.audio) && step.audio[idx]) ? step.audio[idx] : "";
+                    htmlString += `<div class="sub-step-block">`;
+                    htmlString += `<div><span class="sub-step-badge">${sub.title || ''}</span></div>`;
+                    if (sub.arabic) htmlString += `<div class="arabic" dir="rtl">${sub.arabic}</div>`;
+                    if (audioSrc) {
+                        htmlString += `<button class="audio-btn" onclick="toggleSpecificAudio('${audioSrc.replace(/'/g, "\\'")}', this)">🔊 Play Audio</button>`;
+                    }
+                    if (sub.bangla) htmlString += `<div class="bangla-box">${sub.bangla}</div>`;
+                    htmlString += `</div>`;
                 });
             } else {
-                htmlString += `
-                    <div style="text-align: center;">
-                        ${step.arabic ? `<div class="arabic" dir="rtl">${step.arabic}</div>` : ''}
-                        ${step.arabic_transliteration ? `<div class="transliteration">${step.arabic_transliteration}</div>` : ''}
-                        ${step.audio && !Array.isArray(step.audio) ? `<button class="audio-btn" onclick="toggleSpecificAudio('${step.audio}', this)">🔊 Play Audio</button>` : ''}
-                    </div>
-                    ${step.bangla ? `<div class="bangla-box">${step.bangla}</div>` : ''}`;
+                htmlString += `<div style="text-align: center;">`;
+                if (step.arabic) htmlString += `<div class="arabic" dir="rtl">${step.arabic}</div>`;
+                if (step.arabic_transliteration) htmlString += `<div class="transliteration">${step.arabic_transliteration}</div>`;
+                if (step.audio && !Array.isArray(step.audio)) {
+                    htmlString += `<button class="audio-btn" onclick="toggleSpecificAudio('${step.audio.replace(/'/g, "\\'")}', this)">🔊 Play Audio</button>`;
+                }
+                htmlString += `</div>`;
+                if (step.bangla) htmlString += `<div class="bangla-box">${step.bangla}</div>`;
             }
             document.getElementById('dynamic-content').innerHTML = htmlString;
 
-            const noteContainer = document.getElementById('global-note');
+            // global note
+            const noteDiv = document.getElementById('global-note');
             if (step.note) {
-                noteContainer.innerHTML = `<strong>Note:</strong> ${step.note}`;
-                noteContainer.style.display = "block";
+                noteDiv.innerHTML = `<strong>ⓘ note</strong> · ${step.note}`;
+                noteDiv.style.display = 'block';
             } else {
-                noteContainer.style.display = "none";
+                noteDiv.style.display = 'none';
             }
 
+            // progress & buttons
             const progress = ((currentStep + 1) / prayerData.steps.length) * 100;
             document.getElementById('progress-bar').style.width = `${progress}%`;
             document.getElementById('prev-btn').disabled = currentStep === 0;
-            document.getElementById('next-btn').innerText = currentStep === prayerData.steps.length - 1 ? "Finish" : "Next Step";
+            document.getElementById('next-btn').innerText = currentStep === prayerData.steps.length - 1 ? 'Complete' : 'Next';
         }
 
-        window.toggleSpecificAudio = function(src, btnElement) {
-            if (prayerAudio.src.endsWith(src) && !prayerAudio.paused) {
-                prayerAudio.pause();
-                btnElement.innerHTML = "▶️ Resume Audio";
-            } else {
-                if (currentPlayingBtn && currentPlayingBtn !== btnElement) currentPlayingBtn.innerHTML = "🔊 Play Audio";
-                if (!prayerAudio.src.endsWith(src)) prayerAudio.src = src;
-                
-                prayerAudio.play().catch(e => alert("Audio file not found: " + src));
-                btnElement.innerHTML = "⏸ Pause Audio";
-                currentPlayingBtn = btnElement;
+        window.toggleSpecificAudio = function(src, btn) {
+            if (!src) return;
+            try {
+                if (prayerAudio.src.includes(src) && !prayerAudio.paused) {
+                    prayerAudio.pause();
+                    btn.innerHTML = "🔊 Play Audio";
+                } else {
+                    if (currentPlayingBtn && currentPlayingBtn !== btn) {
+                        currentPlayingBtn.innerHTML = "🔊 Play Audio";
+                    }
+                    if (!prayerAudio.src.includes(src)) {
+                        prayerAudio.src = src;
+                    }
+                    prayerAudio.play().catch(() => alert("Audio unavailable."));
+                    btn.innerHTML = "⏸ Pause";
+                    currentPlayingBtn = btn;
+                }
+            } catch (e) {
+                // ignore
             }
         };
 
-        prayerAudio.addEventListener('ended', () => {
+        prayerAudio.addEventListener('ended', function() {
             if (currentPlayingBtn) {
                 currentPlayingBtn.innerHTML = "🔊 Play Audio";
                 currentPlayingBtn = null;
             }
         });
 
-        document.getElementById('next-btn').addEventListener('click', () => {
+        document.getElementById('next-btn').addEventListener('click', function() {
+            if (!prayerData) return;
             if (currentStep < prayerData.steps.length - 1) {
-                currentStep++; updateStep(); window.scrollTo({ top: 0, behavior: 'smooth' });
+                currentStep++;
+                updateStep();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } else {
-                alert("Prayer Guide Completed!"); window.location.href = "index.html";
+                // Trigger the beautiful completion modal
+                modal.style.display = 'flex';
+                // Trigger animation on next frame
+                setTimeout(() => modal.classList.add('active'), 10);
             }
         });
 
-        document.getElementById('prev-btn').addEventListener('click', () => {
+        document.getElementById('prev-btn').addEventListener('click', function() {
             if (currentStep > 0) {
-                currentStep--; updateStep(); window.scrollTo({ top: 0, behavior: 'smooth' });
+                currentStep--;
+                updateStep();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             }
         });
-    </script>
+
+        // --- Modal Button Logic ---
+        document.getElementById('read-again-btn').addEventListener('click', () => {
+            modal.classList.remove('active');
+            setTimeout(() => { modal.style.display = 'none'; }, 300); // Wait for transition
+            currentStep = 0;
+            updateStep();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.getElementById('go-home-btn').addEventListener('click', () => {
+            window.location.href = "index.html";
+        });
+    })();
+</script>
 </body>
 </html>
